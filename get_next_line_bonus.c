@@ -12,14 +12,35 @@
 
 #include "get_next_line.h"
 
-int		str_len(char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int len;
+	char	*al;
+	size_t	i;
+	size_t	j;
 
-	len = 0;
-	while (str[len] != '\0' && str[len] != '\n')
-		len++;
-	return (len);
+	if (!s)
+		return (0);
+	if (!(al = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = 0;
+	j = ft_strlen(s);
+	while (len-- > 0 && j > start)
+	{
+		al[i] = s[i + start];
+		i++;
+	}
+	al[i] = 0;
+	return (al);
+}
+
+int		put(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
 }
 
 int		make(int fd, char **save, char **line)
@@ -27,7 +48,7 @@ int		make(int fd, char **save, char **line)
 	int		len;
 	char	*temp;
 
-	len = str_len(save[fd]);
+	len = put(save[fd]);
 	*line = ft_substr(save[fd], 0, len);
 	if (save[fd][len] == '\n')
 	{
@@ -55,8 +76,7 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (-1);
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!save[fd])
 		save[fd] = ft_strdup("");
 	while ((ret = read(fd, buf, BUFFER_SIZE)) > 0)

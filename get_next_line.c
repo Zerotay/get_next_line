@@ -12,6 +12,27 @@
 
 #include "get_next_line.h"
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*al;
+	size_t	i;
+	size_t	j;
+
+	if (!s)
+		return (0);
+	if (!(al = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = 0;
+	j = ft_strlen(s);
+	while (len-- > 0 && j > start)
+	{
+		al[i] = s[i + start];
+		i++;
+	}
+	al[i] = 0;
+	return (al);
+}
+
 int		put(char *s)
 {
 	int i;
