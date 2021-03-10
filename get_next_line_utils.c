@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:33:56 by dongguki          #+#    #+#             */
-/*   Updated: 2021/01/07 14:57:09 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/03/10 09:34:08 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char		*ft_strdup(const char *s1)
 	size_t	i;
 
 	i = ft_strlen(s1);
-	if (!(dup = (char *)malloc(sizeof(char) * (i + 1))))
+	dup = (char *)malloc(sizeof(char) * (i + 1));
+	if (!dup)
 		return (0);
 	i = 0;
 	while (s1[i])
@@ -80,7 +81,8 @@ char		*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
-	if (!(ans = (char *)malloc(sizeof(char) * (i + j + 1))))
+	ans = (char *)malloc(sizeof(char) * (i + j + 1));
+	if (!ans)
 		return (0);
 	ft_strlcpy(ans, s1, i + 1);
 	ft_strlcpy((ans + i), s2, j + 1);

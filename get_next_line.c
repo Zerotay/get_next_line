@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 22:07:30 by dongguki          #+#    #+#             */
-/*   Updated: 2020/12/13 22:07:30 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/03/10 09:34:34 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (0);
-	if (!(al = (char *)malloc(sizeof(char) * (len + 1))))
+	al = (char *)malloc(sizeof(char) * (len + 1));
+	if (!al)
 		return (0);
 	i = 0;
 	j = ft_strlen(s);
